@@ -6,8 +6,6 @@ This was my third project on the course. We were using React.js for the front en
 
     Deployment link
 
-https://deft-tulumba-c73cf2.netlify.app/
-
 ##################
 
     Getting Started/Code Installation
