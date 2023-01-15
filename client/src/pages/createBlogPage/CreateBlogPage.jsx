@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import uuid from 'react-uuid'
 
 import userService from "../../utils/userService"
-import { createABlog } from '../../utils/blogService'
+import { createABlog, uploadAnImage } from '../../utils/blogService'
 import TextEditor from '../../components/TextEditor/TextEditor'
 import "./CreateBlog.css"
 
@@ -34,6 +34,13 @@ function CreateBlogPage() {
     setBlog({...blog, [e.target.name]: e.target.value})
   }
 
+  let uploadImage = () => {
+    const formData = new FormData()
+    formData.append("file", blog.image)
+    formData.append("upload_preset", "xw7vo9bm");
+    uploadAnImage(formData)
+  }
+
   let handleSubmit = (e) => {
     e.preventDefault()
     const formData = new FormData();
@@ -46,11 +53,12 @@ function CreateBlogPage() {
         formData.append(key, blog[key])
       }
     })
-    
     createABlog(formData).then(res => {
-      navigate("/")
+      // navigate("/")
+      console.log("this is the res", res)
     })
   }
+
 
   let handleKeyDown = (e) => {
     if (e.key !== 'Enter') return 
@@ -118,12 +126,12 @@ function CreateBlogPage() {
 
         <div className='image-input-container'>
           <label>Upload Image</label>
-          <input type="file" name="image" className='image-input' onChange={(e) => setBlog(state => ({ ...state, image:  e.target.files[0]}))} />
+          <input type="file" name="image" className='image-input' onChange={(e) => {setBlog(state => ({ ...state, image:  e.target.files[0]}))}} />
         </div>
 
         <div className="button-container">
           <button onClick={handleCancel} className="cancel-button">CANCEL</button>
-          <button type='Submit' disabled={!formIsValid} className={!formIsValid ? 'not-allowed': 'allowed'}>CREATE NEW BLOG</button>
+          <button type='Submit' disabled={!formIsValid} className={!formIsValid ? 'not-allowed': 'allowed'} onClick={uploadImage}>CREATE NEW BLOG</button>
         </div>
 
       </form>: <p className='authorization-error'>YOU ARE NOT LOGGED IN</p> }
