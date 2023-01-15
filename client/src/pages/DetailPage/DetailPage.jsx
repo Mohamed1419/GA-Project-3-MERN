@@ -56,8 +56,12 @@ function DetailPage() {
       //     }
       //   }
       // }
+      console.log(blog)
     });
   };
+
+  console.log(blog)
+  console.log(blog.image)
 
   React.useEffect(() => {
     fetchBlog();

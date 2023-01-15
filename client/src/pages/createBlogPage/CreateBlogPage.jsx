@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import uuid from 'react-uuid'
 
 import userService from "../../utils/userService"
-import { createABlog, uploadAnImage } from '../../utils/blogService'
+import { createABlog } from '../../utils/blogService'
 import TextEditor from '../../components/TextEditor/TextEditor'
 import "./CreateBlog.css"
 
@@ -51,7 +51,7 @@ function CreateBlogPage() {
       )
       .then((res) => res.json())
       .then((res) => setBlog((prev) => ({
-        blog: {
+        setBlog: {
           ...prev, 
           image: res.secure_url
         }
@@ -72,10 +72,32 @@ function CreateBlogPage() {
       }
     })
     createABlog(formData).then(res => {
-      navigate("/")
+      // navigate("/")
     })
     if (blog.image !== "") {
-      uploadImage()
+            const formData = new FormData();
+            formData.append("file", blog.image);
+            formData.append("upload_preset", "xw7vo9bm");
+
+            const options = {
+              method: "POST",
+              body: formData,
+            };
+
+            return fetch(
+              "https://api.cloudinary.com/v1_1/dnsbeaa7f/image/upload",
+              options
+            )
+              .then((res) => res.json())
+              .then((res) =>
+                setBlog((prev) => ({
+                  setBlog: {
+                    ...prev,
+                    image: res.secure_url,
+                  },
+                }))
+              )
+              .catch((err) => console.log(err));
     }
   }
 
