@@ -138,7 +138,7 @@ function DetailPage() {
           {blog.image ? (
             <div className="blog-img-container">
               <img
-                src={`https://blen-backend.onrender.com/uploads/${blog.image}`}
+                src={blog.image}
                 alt={blog.title}
               />
             </div>

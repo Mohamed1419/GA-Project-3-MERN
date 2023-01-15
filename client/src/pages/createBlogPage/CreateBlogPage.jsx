@@ -34,12 +34,30 @@ function CreateBlogPage() {
     setBlog({...blog, [e.target.name]: e.target.value})
   }
 
-  let uploadImage = () => {
-    const formData = new FormData()
-    formData.append("file", blog.image)
-    formData.append("upload_preset", "xw7vo9bm");
-    uploadAnImage(formData)
-  }
+    const uploadImage = async (e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("file", blog.image);
+      formData.append("upload_preset", "xw7vo9bm");
+
+      const options = {
+        method: "POST",
+        body: formData,
+      };
+
+      return fetch(
+        "https://api.cloudinary.com/v1_1/dnsbeaa7f/image/upload",
+        options
+      )
+      .then((res) => res.json())
+      .then((res) => setBlog((prev) => ({
+        blog: {
+          ...prev, 
+          image: res.secure_url
+        }
+      })))
+      .catch((err) => console.log(err));
+    };
 
   let handleSubmit = (e) => {
     e.preventDefault()
@@ -54,9 +72,11 @@ function CreateBlogPage() {
       }
     })
     createABlog(formData).then(res => {
-      // navigate("/")
-      console.log("this is the res", res)
+      navigate("/")
     })
+    if (blog.image !== "") {
+      uploadImage()
+    }
   }
 
 
@@ -131,7 +151,7 @@ function CreateBlogPage() {
 
         <div className="button-container">
           <button onClick={handleCancel} className="cancel-button">CANCEL</button>
-          <button type='Submit' disabled={!formIsValid} className={!formIsValid ? 'not-allowed': 'allowed'} onClick={uploadImage}>CREATE NEW BLOG</button>
+          <button type='Submit' disabled={!formIsValid} className={!formIsValid ? 'not-allowed': 'allowed'}>CREATE NEW BLOG</button>
         </div>
 
       </form>: <p className='authorization-error'>YOU ARE NOT LOGGED IN</p> }
