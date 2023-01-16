@@ -36,7 +36,7 @@ app.use(
   cors({
     origin: [
       "https://blen-blog.netlify.app/",
-      "https://localhost:3000",
+      "http://localhost:3000",
       "https://api.cloudinary.com/v1_1/dxjwlxupx/image/upload",
       "https://blen.onrender.com",
     ],
