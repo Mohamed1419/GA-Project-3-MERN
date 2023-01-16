@@ -39,8 +39,8 @@ function CreateBlogPage() {
     window.cloudinary
       .createUploadWidget(
         {
-          cloudName: "dnsbeaa7f",
-          uploadPreset: "xw7vo9bm",
+          cloudName: "dxjwlxupx",
+          uploadPreset: "svbtkpkr",
         },
         (error, result) => {
           if (!error && result && result.event === "success") {
