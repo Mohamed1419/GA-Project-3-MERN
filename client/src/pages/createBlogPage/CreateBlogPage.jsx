@@ -34,32 +34,6 @@ function CreateBlogPage() {
     setBlog({...blog, [e.target.name]: e.target.value})
   }
 
-    // const uploadImage = async (e) => {
-    //   e.preventDefault();
-    //   const formData = new FormData();
-    //   formData.append("file", blog.image);
-    //   formData.append("upload_preset", "xw7vo9bm");
-
-    //   const options = {
-    //     method: "POST",
-    //     body: formData,
-    //   };
-
-    //   return fetch(
-    //     "https://api.cloudinary.com/v1_1/dnsbeaa7f/image/upload",
-    //     options
-    //   )
-    //   .then((res) => res.json())
-    //   .then((res) => setBlog((prev) => ({
-    //     setBlog: {
-    //       ...prev, 
-    //       image: res.secure_url
-    //     }
-    //   })))
-    //   .catch((err) => console.log(err));
-    // };
-
-
   function handleImageUpload(e) {
     e.preventDefault();
     window.cloudinary
