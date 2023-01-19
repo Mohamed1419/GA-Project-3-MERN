@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getUserBlog } from "../../utils/blogService";
 import HTMLReactParser from "html-react-parser";
-import useUser from "../../hooks/useUser";
+// import useUser from "../../hooks/useUser";
 import "./UserBlogs.css";
 
 function UserBlogs() {
-  const { user } = useUser();
-  const [userBlogs, setUserBlogs] = useState();
+  // const { user } = useUser();
+  const [userBlogs, setUserBlogs] = useState("");
   const { userID } = useParams();
 
   let navigate = useNavigate();
@@ -57,7 +57,7 @@ function UserBlogs() {
               blog posts
             </h3>
           </div>
-          <article>
+          <article className="user-blogs-article">
             {userBlogs.blogs
               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               .map((b) => (

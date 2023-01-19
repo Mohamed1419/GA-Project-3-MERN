@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import useUser from "../../hooks/useUser";
+// import useUser from "../../hooks/useUser";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateProfileInfo } from "../../utils/userService";
+import { BASE_URL } from "../../utils/constants";
 import "./ProfileEdit.css";
 
 const initialProfileDataObject = {
@@ -12,7 +13,7 @@ const initialProfileDataObject = {
 };
 
 function ProfileEdit() {
-  const { user } = useUser();
+  // const { user } = useUser();
 
   const { userID } = useParams();
 
@@ -25,7 +26,7 @@ function ProfileEdit() {
     if (!userID) {
       return;
     }
-    fetch(`/api/users/${userID}`)
+    fetch(`${BASE_URL}/api/users/${userID}`)
       .then((res) => res.json())
       .then((userData) => {
         const newUserObject = { ...initialProfileDataObject, ...userData };
@@ -75,11 +76,12 @@ function ProfileEdit() {
       <div className="form-container">
         <form onSubmit={handleSubmit} className="profile-edit-form">
           <label>Bio:</label>
-          <input
-            className="edit-input bio"
+          <textarea
+            className="bio"
             type="text"
             name="bio"
             value={profileEdit.bio}
+            maxLength="80"
             onChange={handleChange}
           />
 

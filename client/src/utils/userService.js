@@ -1,9 +1,8 @@
 import tokenService from "./tokenService";
-
-const BASE_URL = "/api/users/"; // Note: Once deployed this should be updated.
+import { BASE_URL } from "./constants";
 
 function signup(user) {
-  return fetch(BASE_URL + "signup", {
+  return fetch(BASE_URL + "/api/users/signup", {
     method: "POST",
     headers: new Headers({ "Content-Type": "application/json" }),
     body: JSON.stringify(user),
@@ -25,7 +24,7 @@ function logout() {
 }
 
 function login(creds) {
-  return fetch(BASE_URL + "login", {
+  return fetch(BASE_URL + "/api/users/login", {
     method: "POST",
     headers: new Headers({ "Content-Type": "application/json" }),
     body: JSON.stringify(creds),
@@ -40,7 +39,7 @@ function login(creds) {
 export const updateProfileInfo = async (profileEdit, userID) => {
   try {
     const token = tokenService.getToken();
-    let res = await fetch(`/api/users/${userID}`, {
+    let res = await fetch(`${BASE_URL}/api/users/${userID}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

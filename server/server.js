@@ -32,7 +32,17 @@ app.use(logger("dev"));
 app.use(express.json({ limit: "30mb" }));
 // ? Teach the app to understand/parse forms
 // app.use(express.urlencoded());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://blen-blog.netlify.app",
+      "http://localhost:3001",
+      "http://localhost:3000",
+      "https://api.cloudinary.com/v1_1/dxjwlxupx/image/upload",
+      "https://blen.onrender.com",
+    ],
+  })
+);
 app.use(auth);
 
 //START of image upload setup
@@ -56,7 +66,7 @@ const upload = multer({ storage: storage });
 
 // Proxy
 app.use(express.static(join(__dirname, "..", "client", "build")));
-app.use("/uploads", express.static("uploads"));
+app.use(express.static(__dirname));
 app.use("/blogpost/detail/uploads", express.static("uploads"));
 // Put API routes here, before the "catch all" route
 

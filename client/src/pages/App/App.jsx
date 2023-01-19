@@ -8,10 +8,9 @@ import DetailPage from "../DetailPage/DetailPage";
 import ImageUpload from "../ImageUpload/ImageUpload";
 import UserBlogs from "../UserBlogs/UserBlogs";
 import Profile from "../Profile/Profile";
-import { ProtectedRoute } from "../../utils/route";
 import useUser from "../../hooks/useUser";
 import NavBar from "../../components/NavBar/NavBar";
-import ProtectedPage from "../ProtectedPage";
+// import ProtectedPage from "../ProtectedPage";
 import CreateBlogPage from "../createBlogPage/CreateBlogPage";
 import EditBlogPage from "../EditBlogPage/EditBlogPage";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
@@ -50,11 +49,6 @@ function App() {
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/upload" element={<ImageUpload />} />
         <Route exact path="/user" element={<UserBlogs />} />
-        <Route
-          exact
-          path="/protected"
-          element={<ProtectedRoute>{/* <ProtectedPage /> */}</ProtectedRoute>}
-        />
       </Routes>
     </div>
   );
