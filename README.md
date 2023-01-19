@@ -1,14 +1,14 @@
-    Project 3: MERN Blog App
+# Project 3: MERN Blog App
 
-    Description
+## Description
 
 This was my third project on the course. We were using React.js for the front end and Express/Mongoose/MongoDB to create an app which allows users to sign up to a blog site, create blogs which are added to a feed and to the bloggers own personal page. As well as this, to allow users to use create, read, update, and delete functions on their own created blogs which makes use of token authentication. 
 
-    Deployment link
+## Deployment link
 
-##################
+https://blen-blog.netlify.app/
 
-    Getting Started/Code Installation
+## Getting Started/Code Installation
 
 The app has 1 front end repo which can be accessed in the following link: 
 https://github.com/Mohamed1419/GA-Project-3-MERN/tree/main/client
@@ -40,7 +40,7 @@ Start up the app by running the following in the root of the CLIENT:
 npm start
 
 
-    Timeframe & Working Team (Solo/Pair/Group)
+## Timeframe & Working Team (Solo/Pair/Group)
 
 In this project I was working alongside Amal, Angeline, Wang, and Manohisoa Rajaonarivony, you may visit their Github for this project in the following links:
 
@@ -52,7 +52,7 @@ https://github.com/ManohisoaVicky/Project3
 
 We had 12 days to prepare our project for presentations from 6th October 2022 until 18th October 2022. 
 
-    Technologies Used
+## Technologies Used
 
 Front End:
 - React.js
@@ -80,7 +80,7 @@ Design:
 Planning:
 - Trello
 
-    Brief Instructions
+## Brief Instructions
 
 Technical Requirements
 
@@ -107,22 +107,25 @@ Necessary Deliverables
     - Descriptions of any unsolved problems or major hurdles you had to overcome
 
 
-    Planning
+## Planning
 
 The first thing our team done was book a call on zoom to decide upon a project and we decided on a blog catered for anyone in th tech field and named the project Blen. We then decided to flesh out how back end would work and created a database diagram to see what models and variables we would need and how they relate to one another. We used QuickDBD website to design this together as a team. You can access this in the following link: https://app.quickdatabasediagrams.com/#/d/mnlKKN. 
 
 After this we started planning on how the front end should work and which pages will be made for the website. We used Excalidraw to design out wireframe and made general designs on each page. We took inspiration from a variety of different sites for example Devdojo, and Morioh. We then moved onto break down the project into smaller modules, and then list each module as a card on a Trello board. We then proceeded to distribute the modules between team members and decided to have each member work on a designated page on the front end after the back end was created together. The Trello board can be accessed in the following link: https://trello.com/b/4N6Qx6gt/project-3-express. I took on the responsibility of creating the homepage. 
 
-    Build/Code Process and Challenges
+## Build/Code Process and Challenges
 
+```js
 const onAlphabetSortChange = (e) => {
     const newBlogs = structuredClone(blogs);
     setBlogs(newBlogs.sort((a, b) => a.title.localeCompare(b.title)));
   };
+```
 
 In this block of code from my homepage I made function which sorts out the posts on the homepage by alphabetical order. I found the localCompare method to be particularly useful for this and saved myself a lot of time because the alternative route would have been much longer as I was thinking about making a function which looked at the first 2 characters and compared them to see which came before the others, and then after all that was done expanding on that to cater for the 3rd, 4th, 5th positions on the string and comparing those too. It would have consumed so much more time. 
 Also another thing is the use of the structured clone. I used this because when I sorted by the blogs state directly it seemed to break the code. Hence a solution was to create a clone and use that clone instead for manipulating using this sort. 
 
+```js
 const onFilterChange = (e) => {
     const thisTag = e.target["name"];
     if (e.target.checked) {
@@ -138,9 +141,11 @@ const onFilterChange = (e) => {
       );
     }
 };
+```
 
 In this block of code, my aim was to create a function which allowed the user to click on any particular tag, and manipulate the blogs state to show only the blogs which have those tags. I used these functions alongside a button which the name attribute was taken in order for the function to identify the particular tag that the user clicks. A tag state which had all the tags on the database already inside of it was used in order to identify which tags are currently selected/filtered by the user. Then when a particular tag is checked (because at any given time some may be unchecked) it will add that tag to the tags state and then show all blogs containing that tag on the interface. Alternatively if the tag is unchecked, then a function will execute that will alter the tags state and only contain tags which are not the tag that has been unchecked, then this will reflect on the interface and filter out any blog containing that tag. 
 
+```js
 const onDateSortChange = (e) => {
     console.log(e.target);
     const newBlogs = structuredClone(blogs);
@@ -150,10 +155,11 @@ const onDateSortChange = (e) => {
       })
     );
   };
+```
 
-  In this block of code which has the similar goal of sorting the blogs state, this instead was made to sort the blogs state by date uploaded using the createdAt method which every blog has. Similar to the title/alphabetical order sort, if the state was directly manipulated, the code would break and the function would not work. So a clone was made and I used this clone to manipulate instead, and it worked flawlessly so I went with it. This function would manipulate the clone function and then once it was done sorting it out by date it would then take the new sorted clone and update the blogs state entirely with the new clone. 
+In this block of code which has the similar goal of sorting the blogs state, this instead was made to sort the blogs state by date uploaded using the createdAt method which every blog has. Similar to the title/alphabetical order sort, if the state was directly manipulated, the code would break and the function would not work. So a clone was made and I used this clone to manipulate instead, and it worked flawlessly so I went with it. This function would manipulate the clone function and then once it was done sorting it out by date it would then take the new sorted clone and update the blogs state entirely with the new clone. 
 
-    Wins, Bugs, and Future Improvements
+## Wins, Bugs, and Future Improvements
 
 
 - We were able to use Git well for version control and merging the final code together. Although we did happen upon some problems along the way we communicated effectively as a team and got it sorted in no more than a few hours. 
@@ -168,7 +174,7 @@ const onDateSortChange = (e) => {
 - To enhance the app I would like to add a searchbar feature as I think that is something which will make the user experience on the app much better
 - Another feature which I would have liked to add is a following system
 
-    Key Learnings/Takeaways
+## Key Learnings/Takeaways
 
 - I further expanded on my skills of working alongside people, this is because I worked with a team of 3 other people
 - An extension of the previous point is that I also learnt more about what it means to manage workloads and distribution of work, and which styles work better. Meaning whether to break down the app into chunks based on pages or just general front end and back end. 
