@@ -37,6 +37,7 @@ app.use(
     origin: [
       "https://blen-blog.netlify.app/",
       "http://localhost:3001",
+      "http://localhost:3000",
       "https://api.cloudinary.com/v1_1/dxjwlxupx/image/upload",
       "https://blen.onrender.com",
     ],
